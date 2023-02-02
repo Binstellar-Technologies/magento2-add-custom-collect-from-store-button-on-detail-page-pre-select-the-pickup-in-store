@@ -6,15 +6,39 @@
 
 ## Installation Steps
 
-Step 1 : Download the Zip file from Github & Unzip it
-Step 2 : Create a directory under app/code/Binstellar/CollectfromStore
-Step 3 : Upload the files & folders from extracted package to app/code/Binstellar/CollectfromStore
-Step 4 : Go to the Magento2 Root directory & run following commands
+##### Step 1 : Download the Zip file from Github & Unzip it
+##### Step 2 : Create a directory under app/code/Binstellar/CollectfromStore
+##### Step 3 : Upload the files & folders from extracted package to app/code/Binstellar/CollectfromStore
+##### Step 4 : Go to the Magento2 Root directory & run following commands
 
 php bin/magento setup:upgrade 
+
 php bin/magento setup:di:compile
+
 php bin/magento setup:static-content:deploy -f
+
 php bin/magento cache:flush
 
+&nbsp;
+&nbsp;
+
+##### Product Details Page Display Collect From Store Button
+![image3](https://user-images.githubusercontent.com/123800304/216258059-2438f83b-02b8-4ba6-9645-c9a11cdd3dff.png)
+
+&nbsp;
+&nbsp;
+
+##### Admin Store Configuration Added Option To Change Collect From Store Button Text
+![image2](https://user-images.githubusercontent.com/123800304/216258532-434333c2-079b-41d9-b595-12538e567c33.png)
+
+&nbsp;
+&nbsp;
+
+##### Checkout Page Default Select Pickup In Store
+![image1](https://user-images.githubusercontent.com/123800304/216258732-aee124d4-876e-4aa9-9bdf-268a92f5f9c6.png)
+
+
+&nbsp;
+&nbsp;
 
 ## Note : We have tested this option in Magento ver. 2.4.5-p1
