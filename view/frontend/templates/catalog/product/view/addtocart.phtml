@@ -1,0 +1,110 @@
+<?php /** @var $block \Magento\Catalog\Block\Product\View */ ?>
+<?php
+$isModuleEnable = $this->helper(\Binstellar\CollectfromStore\Helper\Data::class)->getConfig('collectfromstore/general/enable_collectfromstore');
+$hideCart = $this->helper(\Binstellar\CollectfromStore\Helper\Data::class)->getConfig('collectfromstore/advance/hide_add_to_cart');
+$flag = 1;
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php $productType = $block->getProduct()->getTypeId(); ?>
+<?php if ($_product->isSaleable()): ?>
+<div class="box-tocart">
+    <div class="stock-left">
+
+        <?php if ($block->displayProductStockStatus()) :?>
+            <?php if ($_product->isAvailable()) :?>
+                <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                    <span class="fas fa-check-circle"></span> <span><?= $block->escapeHtml(__('In stock online')) ?></span>
+                </div>
+            <?php else :?>
+                <div class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                   <span class="fas fa-times-circle"></span> <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+                </div>
+            <?php endif; ?>
+        <?php endif; ?>
+        <?php if ($productType != 'downloadable') :?>
+
+        
+        <?php endif; ?>
+        <?php $buttonTitle = __('Add to Cart'); ?>
+        <?php if ($_product->isSaleable()) :?>
+            <div class="fieldset">
+                <div class="actions">
+                    <!-- <button type="submit"
+                            title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
+                            class="action primary tocart"
+                            id="product-addtocart-button" disabled>
+                        <span><?= $block->escapeHtml($buttonTitle) ?></span>
+                    </button> -->
+                    <?php if ($isModuleEnable ? ($hideCart ? $flag = 0 : $flag) : $flag): ?>
+                        <button type="submit"
+                                title="<?= /* @noEscape */ $buttonTitle ?>"
+                                class="action primary tocart"
+                                id="product-addtocart-button">
+                            <span><?= /* @noEscape */ $buttonTitle ?></span>
+                        </button>
+                    <?php endif; ?>
+           
+                    <?= $block->getChildHtml('', true) ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        
+    </div>
+    <?php if ($productType != 'downloadable') :?>
+
+    <div class="stock-right">
+        
+        <!-- <a class="primary action" href="<?= $_product->getCustomLink() ?>"><span class="ff-button-icon icon icon_i_225_store"></span><?= __('Collect from store') ?></a> -->
+         <?php if ($isModuleEnable):
+                $buttonTitle = $this->helper(\Binstellar\CollectfromStore\Helper\Data::class)->getConfig('collectfromstore/advance/button_title'); ?>
+                <div class="binstellar-collectfromstore-view">
+                    <button type="submit"
+                            title="<?= /* @noEscape */ __($buttonTitle) ?>"
+                            class="primary action"
+                            id="product-store-button"
+                            data-mage-init='
+                            {
+                                "Binstellar_CollectfromStore/js/buy-now":
+                                {
+                                    "form": "#product_addtocart_form"
+                                }
+                            }
+                            '>
+                    <span><?= /* @noEscape */ __($buttonTitle) ?></span>
+                    </button>
+                </div>
+            <?php endif; ?>
+    </div>
+    <?php endif; ?>
+    <!-- END -->
+</div>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function($) {
+    jQuery(document).ready(function() {
+        $("button").click(function() {
+        var buttonId = this.id;
+        setCookie('shipMethod', buttonId, 30);
+        });
+        });
+    });
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    if(cname == 'shipMethod'){
+        document.cookie = cname + "=" + cvalue + "; " + expires + ";path=/";
+    } else{
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+}
+</script>

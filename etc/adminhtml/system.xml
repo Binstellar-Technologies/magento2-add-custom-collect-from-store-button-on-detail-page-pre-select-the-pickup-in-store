@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="binstellar" translate="label" sortOrder="500">
+            <label>Binstellar Extensions</label>
+        </tab>
+        <section id="collectfromstore" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Collect From Store</label>
+            <tab>binstellar</tab>
+            <resource>Binstellar_CollectfromStore::config_collectfromstore</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enable_collectfromstore" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Collect From Store Button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="advance" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Advanced Configuration</label>
+                <depends>
+                    <field id="collectfromstore/general/enable_collectfromstore">1</field>
+                </depends>
+                 <field id="button_title" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Title</label>
+                    <comment>This Title will be displayed in store front as Button Label.</comment>
+                     <depends>
+                         <field id="collectfromstore/general/enable_collectfromstore">1</field>
+                     </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
+
