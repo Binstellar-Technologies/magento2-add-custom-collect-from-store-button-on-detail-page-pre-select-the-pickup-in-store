@@ -23,19 +23,32 @@ php bin/magento cache:flush
 &nbsp;
 
 ##### Product Details Page Display Collect From Store Button
+<kbd>
+
 ![image3](https://user-images.githubusercontent.com/123800304/216258059-2438f83b-02b8-4ba6-9645-c9a11cdd3dff.png)
+
+</kbd>
 
 &nbsp;
 &nbsp;
 
 ##### Admin Store Configuration Added Option To Change Collect From Store Button Text
+<kbd>
+
 ![image2](https://user-images.githubusercontent.com/123800304/216258532-434333c2-079b-41d9-b595-12538e567c33.png)
+
+</kbd>
 
 &nbsp;
 &nbsp;
 
 ##### Checkout Page Default Select Pickup In Store
+
+<kbd>
+
 ![image1](https://user-images.githubusercontent.com/123800304/216258732-aee124d4-876e-4aa9-9bdf-268a92f5f9c6.png)
+
+</kbd>
 
 
 &nbsp;
